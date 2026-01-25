@@ -1,4 +1,4 @@
---// UI + Recoil Toggle
+-- UI + Recoil Toggle
 getgenv().NoRecoilEnabled = false
 
 -- Create UI
@@ -55,15 +55,22 @@ check.Parent = checkbox
 local toggled = false
 checkbox.MouseButton1Click:Connect(function()
     toggled = not toggled
-    check.Text = toggled and "✓" or ""
-    getgenv().NoRecoilEnabled = toggled
+    if toggled then
+        check.Text = "✓"
+        getgenv().NoRecoilEnabled = true
+    else
+        check.Text = ""
+        getgenv().NoRecoilEnabled = false
+    end
 end)
 
---// Recoil Module
+-- Recoil Module
 local Recoil = {}
 
 function Recoil.AddRecoil(_, recoilParams)
-    if getgenv().NoRecoilEnabled then return end
+    if getgenv().NoRecoilEnabled then
+        return
+    end
 
     local xMin = recoilParams.xMin or 0
     local xMax = recoilParams.xMax or 0
@@ -79,5 +86,4 @@ function Recoil.AddRecoil(_, recoilParams)
     end
 end
 
--- Optional: expose globally
 getgenv().Recoil = Recoil
