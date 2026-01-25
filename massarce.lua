@@ -1,4 +1,4 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/hitechboi/lillhitechboi/main/Ui.txt"))()
+loadstring(game:HttpGet("https://github.com/zee-7654/UI/blob/main/UI.lua"))()
 
 getgenv().NoRecoilEnabled = false
 
