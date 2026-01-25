@@ -1,17 +1,12 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/zee-7654/UI/main/UI.lua"))()
+local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/hitechboi/lillhitechboi/main/Ui.lua"))()
 
 getgenv().NoRecoilEnabled = false
 
 local window = UI:Window({
     Title = "Massacre",
-    Size = Vector2.new(600, 450),
-    Open = true
+    Size = Vector2.new(300, 200)
 })
 
-local tweaks = window:Tab({ Title = "Tweaks" })
-
-local recoilSection = tweaks:Section({ Title = "Recoil Control" })
-
-recoilSection:Checkbox({ Title = "No Recoil", Default = false }, function(state)
+window:Checkbox("No Recoil", false, function(state)
     getgenv().NoRecoilEnabled = state
 end)
