@@ -1,64 +1,17 @@
-repeat task.wait() until game.Players.LocalPlayer
-repeat task.wait() until game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/hitechboi/lillhitechboi/main/Ui.txt"))()
 
 getgenv().NoRecoilEnabled = false
 
-local player = game.Players.LocalPlayer
-local pg = player:WaitForChild("PlayerGui")
+local window = UI:Window({
+    Title = "Massacre",
+    Size = Vector2.new(600, 450),
+    Open = true
+})
 
-local gui = Instance.new("ScreenGui")
-gui.Name = "MassacreUI"
-gui.ResetOnSpawn = false
-gui.Parent = pg
+local tweaks = window:Tab({ Title = "Tweaks" })
 
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 260, 0, 160)
-frame.Position = UDim2.new(0.5, -130, 0.4, 0)
-frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-frame.BorderSizePixel = 0
-frame.Active = true
-frame.Draggable = true
-frame.Parent = gui
+local recoilSection = tweaks:Section({ Title = "Recoil Control" })
 
-local title = Instance.new("TextLabel")
-title.Size = UDim2.new(1, 0, 0, 28)
-title.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-title.Text = "Massacre - Tweaks"
-title.TextColor3 = Color3.fromRGB(255, 255, 255)
-title.Font = Enum.Font.GothamBold
-title.TextSize = 14
-title.Parent = frame
-
-local checkbox = Instance.new("TextButton")
-checkbox.Size = UDim2.new(0, 20, 0, 20)
-checkbox.Position = UDim2.new(0, 15, 0, 50)
-checkbox.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-checkbox.Text = ""
-checkbox.BorderSizePixel = 0
-checkbox.Parent = frame
-
-local label = Instance.new("TextLabel")
-label.Size = UDim2.new(0, 200, 0, 20)
-label.Position = UDim2.new(0, 45, 0, 50)
-label.BackgroundTransparency = 1
-label.Text = "No Recoil"
-label.TextColor3 = Color3.fromRGB(255, 255, 255)
-label.Font = Enum.Font.Gotham
-label.TextSize = 14
-label.Parent = frame
-
-local check = Instance.new("TextLabel")
-check.Size = UDim2.new(1, 0, 1, 0)
-check.BackgroundTransparency = 1
-check.Text = ""
-check.TextColor3 = Color3.fromRGB(0, 255, 0)
-check.Font = Enum.Font.GothamBold
-check.TextSize = 18
-check.Parent = checkbox
-
-local toggled = false
-checkbox.MouseButton1Click:Connect(function()
-    toggled = not toggled
-    check.Text = toggled and "✓" or ""
-    getgenv().NoRecoilEnabled = toggled
+recoilSection:Checkbox({ Title = "No Recoil", Default = false }, function(state)
+    getgenv().NoRecoilEnabled = state
 end)
